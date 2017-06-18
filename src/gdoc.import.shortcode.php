@@ -69,6 +69,9 @@ function nackasmu_gdoc_shortcode($atts)
     // Modify Google styles to make sure they only apply within the nackasmu-gdoc <div/>
     $doc_contents = preg_replace('/([}])([a-z]+[.#{])/', '$1#nackasmu-gdoc $2', $doc_contents);
 
+    // Convert links back from "Google redirects" to regular links.
+    $doc_contents = preg_replace('/"https:\/\/www\.google\.com\/url\?q=([a-zA-Z0-9.\/_:=;&-]+)&amp;sa=[^"]+"/', '"$1"', $doc_contents);
+
     // Modify Google styles to remove font names
     $doc_contents = preg_replace('/font-family:[^;]+;/', '', $doc_contents);
 
