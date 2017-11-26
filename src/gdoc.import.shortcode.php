@@ -63,7 +63,7 @@ function nackasmu_get_content($url, $cache_seconds)
 
     $cache_hit = file_exists($cache_file_path) && filemtime($cache_file_path) > (time() - $cache_seconds);
     if (!$cache_hit) {
-        file_put_contents($cache_file_path, file_get_contents($url));
+        file_put_contents($cache_file_path, mb_convert_encoding(file_get_contents($url), 'HTML-ENTITIES', 'UTF-8'));
     }
 
     $doc_contents = file_get_contents($cache_file_path);
@@ -197,12 +197,14 @@ function nackasmu_actionplan_precautions_shortcode($atts)
         }
     }
     foreach ($situtations as $label => $actions) {
+        $actions = array_unique($actions);
+        asort($actions);
         $html .= sprintf('<p><strong>%s</strong></p>', $label);
         $html .= sprintf('<ul>%s</ul>', join(array_map(function ($action) {
             return "<li>$action</li>";
         }, array_filter($actions, function ($action) {
             // Only show actions which are at least two characters long (removes actions like "?" and "...")
-            return strlen(trim($action)) >= 4;
+            return strlen(utf8_encode(trim($action))) >= 4;
         }))));
     }
     $html .= sprintf('<p><small>Åtgärderna har samlats in från de här handlingsplanerna: %s.</small></p>', join(', ', array_map(function ($processed_plan) {
