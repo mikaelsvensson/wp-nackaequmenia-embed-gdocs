@@ -197,7 +197,9 @@ function nackasmu_actionplan_precautions_shortcode($atts)
         }
     }
     foreach ($situtations as $label => $actions) {
-        $actions = array_unique($actions);
+        $actions = array_map(function ($action) {
+            return preg_match('/[\w\s]{1,20}:/', $action) ? $action : "Övrigt: $action";
+        }, array_unique($actions));
         asort($actions);
         $html .= sprintf('<p><strong>%s</strong></p>', $label);
         $html .= sprintf('<ul>%s</ul>', join(array_map(function ($action) {
