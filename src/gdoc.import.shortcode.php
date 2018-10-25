@@ -16,11 +16,35 @@ div#nackasmu-gdoc p.title,
 div#nackasmu-gdoc p.subtitle {
     display: none;
 }
+div#nackasmu-gdoc p.c2,
+div#nackasmu-gdoc p.subtitle {
+    margin-left: 0;
+    margin-right: 0;
+}
 div#nackasmu-gdoc h1 {
     font-size: 1.5em;
 }
 div#nackasmu-gdoc h2 {
     font-size: 1.2em;
+}
+div#nackasmu-gdoc li:before {
+    display: none
+}
+div#nackasmu-gdoc li.c3,
+div#nackasmu-gdoc li.c4 {
+    height: auto;
+}
+div#nackasmu-gdoc ol {
+    list-style-type: decimal !important;
+}
+div#nackasmu-gdoc ul {
+    list-style-type: disc !important;
+}
+div#nackasmu-gdoc ol,
+div#nackasmu-gdoc ul {
+    padding-top: 0em;
+    padding-bottom: 0em;
+    padding-left: 1em;
 }
 div#nackasmu-gdoc ol li,
 div#nackasmu-gdoc ul li {
