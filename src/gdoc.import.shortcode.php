@@ -10,49 +10,49 @@
 
 const NACKASMU_GDOC_BEFORE_CONTENT = <<<HTML
 <style type="text/css">
-div#nackasmu-gdoc {
+div.nackasmu-gdoc {
 }
-div#nackasmu-gdoc p.title,
-div#nackasmu-gdoc p.subtitle {
+div.nackasmu-gdoc p.title,
+div.nackasmu-gdoc p.subtitle {
     display: none;
 }
-div#nackasmu-gdoc p.c2,
-div#nackasmu-gdoc p.subtitle {
+div.nackasmu-gdoc p.c2,
+div.nackasmu-gdoc p.subtitle {
     margin-left: 0;
     margin-right: 0;
 }
-div#nackasmu-gdoc h1 {
+div.nackasmu-gdoc h1 {
     font-size: 1.5em;
 }
-div#nackasmu-gdoc h2 {
+div.nackasmu-gdoc h2 {
     font-size: 1.2em;
 }
-div#nackasmu-gdoc li:before {
+div.nackasmu-gdoc li:before {
     display: none
 }
-div#nackasmu-gdoc li.c3,
-div#nackasmu-gdoc li.c4 {
+div.nackasmu-gdoc li.c3,
+div.nackasmu-gdoc li.c4 {
     height: auto;
 }
-div#nackasmu-gdoc ol {
+div.nackasmu-gdoc ol {
     list-style-type: decimal !important;
 }
-div#nackasmu-gdoc ul {
+div.nackasmu-gdoc ul {
     list-style-type: disc !important;
 }
-div#nackasmu-gdoc ol,
-div#nackasmu-gdoc ul {
+div.nackasmu-gdoc ol,
+div.nackasmu-gdoc ul {
     padding-top: 0em;
     padding-bottom: 0em;
     padding-left: 1em;
 }
-div#nackasmu-gdoc ol li,
-div#nackasmu-gdoc ul li {
+div.nackasmu-gdoc ol li,
+div.nackasmu-gdoc ul li {
     padding-top: 0.15em;
     padding-bottom: 0.15em;
 }
 </style>
-<div id="nackasmu-gdoc">
+<div class="nackasmu-gdoc">
 HTML;
 
 const NACKASMU_GDOC_AFTER_CONTENT = <<<HTML
@@ -98,7 +98,7 @@ function nackasmu_get_content($url, $cache_seconds)
     $doc_contents = substr($doc_contents, $pos_start, $pos_end - $pos_start);
 
     // Modify Google styles to make sure they only apply within the nackasmu-gdoc <div/>
-    $doc_contents = preg_replace('/([}])([a-z]+[.#{])/', '$1#nackasmu-gdoc $2', $doc_contents);
+    $doc_contents = preg_replace('/([}])([a-z]+[.#{])/', '$1.nackasmu-gdoc $2', $doc_contents);
 
     // Convert links back from "Google redirects" to regular links.
     $doc_contents = preg_replace('/"https:\/\/www\.google\.com\/url\?q=([a-zA-Z0-9.\/_:=;&-]+)&amp;sa=[^"]+"/', '"$1"', $doc_contents);
